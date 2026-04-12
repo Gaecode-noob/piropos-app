@@ -1,41 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Piropos 💘</title>
+    <meta charset="UTF-8">
+    <title>Piropos 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
             text-align: center;
-            font-family: Arial;
-            background: #ffe6f0;
-        }
-        .card {
-            margin-top: 100px;
-            padding: 30px;
-            background: white;
-            display: inline-block;
-            border-radius: 15px;
-            box-shadow: 0px 0px 10px gray;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background: hotpink;
             color: white;
-            border: none;
-            border-radius: 10px;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            display: inline-block;
+            animation: aparecer 1s ease;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+        }
+
+        button {
+            margin-top: 20px;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .piropo {
+            font-size: 22px;
+            margin-top: 15px;
         }
     </style>
 </head>
+
 <body>
 
-<div class="card">
-    <h1>💘 Piropo del día 💘</h1>
-    <p>{{ piropo }}</p>
+<div class="container">
+    <div class="card">
+        <h1>💖 Piropos 💖</h1>
 
-    <form method="POST">
-        <button>Otro piropo 🔄</button>
-    </form>
+        <p class="piropo">{{ piropo }}</p>
+
+        <form method="POST">
+            <button class="btn btn-light btn-lg">Otro piropo 😍</button>
+        </form>
+
+        <br>
+
+        <!-- Botón compartir -->
+        <a id="whatsapp" class="btn btn-success mt-3" target="_blank">
+            Compartir en WhatsApp 📤
+        </a>
+    </div>
 </div>
+
+<script>
+    const texto = "{{ piropo }}";
+    const url = "https://wa.me/?text=" + encodeURIComponent(texto);
+    document.getElementById("whatsapp").href = url;
+</script>
 
 </body>
 </html>
